@@ -1,0 +1,54 @@
+# config File
+config/config.py
+config.py
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env
+.env.*
+
+# Airflow specific
+logs/
+airflow.db
+airflow.cfg
+unittests.cfg
+*.pid
+
+# Ignore local database or config files if any
+*.db
+*.sqlite3
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+docker-compose.override.yml
+mysql-data/
+postgres-data/
+
+# VSCode and PyCharm settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Ngrok config or cache
+*.ngrok*
+ngrok.yml
+
+# Test / coverage files
+.coverage
+htmlcov/
+coverage.xml
+
+# Python packaging
+*.egg-info/
+dist/
+build/

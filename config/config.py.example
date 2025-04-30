@@ -1,0 +1,17 @@
+# GitHub API Details
+GITHUB_API_URL = "https://api.github.com/repos/{owner}/{repo}/{path}"
+GITHUB_OWNER = ""       # <-- Change this
+GITHUB_REPO = ""         # <-- Change this
+GITHUB_TOKEN = ""  # <-- Use GitHub Personal Access Token
+GITHUB_CONTENTTS_PATH = ""    #contents/<data_file_path>
+
+
+# MySQL Database Credentials
+DB_USER = ""
+DB_PASSWORD = ""
+DB_HOST = ""   # e.g., "localhost" or "127.0.0.1" or use host.docker.internal:3306 for Docker
+DB_NAME = ""
+
+# Airflow Credentials
+AIRFLOW_USERNAME = ""           #admin
+AIRFLOW_PASSWORD = ""           #admin
