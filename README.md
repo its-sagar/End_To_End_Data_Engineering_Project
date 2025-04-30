@@ -11,7 +11,9 @@ An automated ETL (Extract, Transform, Load) pipeline built with **Apache Airflow
 - [⚙️ Prerequisites](#️-prerequisites)
 - [📦 Installation & Setup](#-installation--setup)
 - [📂 Project Structure](#-project-structure)
-- [🗃️ Dataset](#️-dataset)
+- [🗃️ Dataset Overview](#-dataset-overview)
+- [🗃️ Pipeline Overview](#️-pipeline-overview)
+- [✨ Features](#-features)
 - [📌 Airflow DAG](#-airflow-dag)
 - [🔐 Webhook Integration](#-webhook-integration)
 - [📄 License](#-license)
@@ -19,10 +21,11 @@ An automated ETL (Extract, Transform, Load) pipeline built with **Apache Airflow
 ---
 
 ## 📖 About the Project
+
 This project demonstrates a **GitHub-integrated, end-to-end Data Engineering pipeline using Apache Airflow**. It automates the extraction of CSV data from a GitHub repository, loads it into a MySQL database ("Bronze" layer), performs transformations into structured "Silver" tables, and aggregates them into analytical "Gold" fact and dimension tables for further analysis. The pipeline is automatically triggered whenever a new commit or push is made to the GitHub repository.
 
+### Key Features
 
-### Key Features:
 - Trigger DAGs on GitHub Push Events via Webhook
 - Multi-layered ETL architecture
 - Dockerized Airflow environment
@@ -39,6 +42,7 @@ This project demonstrates a **GitHub-integrated, end-to-end Data Engineering pip
 - 🐬 **MySQL / PostgreSQL** (Relational database storage for Bronze, Silver, Gold layers, and Log file )
 - 🛠️ **Flask (for webhook listener)** (Webhook listener server)
 - 📡 **GitHub Webhooks** (Event-based triggering mechanism)
+
 ---
 
 ## ⚙️ Prerequisites
@@ -56,21 +60,25 @@ Before you begin, ensure you have the following installed:
 ## 📦 Installation & Setup
 
 ### 🔁 1. Clone the Repository
+
 ```bash
 git clone https://github.com/its-sagar/End_To_End_Data_Engineering_Project.git
 cd End_To_End_Data_Engineering_Project
 ```
 
 ### 🐳 2. Launch Docker Containers
+
 ```bash
 docker-compose up --build
 ```
 
 This starts:
+
 - Apache Airflow (Webserver: `localhost:8080`)
 - MySQL / PostgreSQL for data storage
 
 ### 🛰️ 3. Create and Activate Python Virtual Environment (optional)
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # on Linux/Mac
@@ -78,6 +86,7 @@ venv\Scripts\activate     # on Windows
 ```
 
 ### 🔧 4. Install Required Python Packages
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -90,14 +99,17 @@ MYSQL_USER=root
 MYSQL_PASSWORD=yourpassword
 MYSQL_DB=bronze_layer
 ```
+
 Note - See the **config.py.example** for reference.
 
 ### 🌐 6. Start Webhook Listener (Flask App)
+
 ```bash
 python webhook_listener.py
 ```
 
 ### 🌍 7. Use Ngrok to Expose Webhook Listener Publicly
+
 ```bash
 ngrok http 5000
 ```
@@ -132,19 +144,23 @@ Copy the HTTPS URL shown (e.g., `https://abc123.ngrok.io`) for GitHub webhook se
 - **Uploaded**: into the GitHub repo(Manually)
 - **Ingestion Target**: Bronze Layer (MySQL)
 - [Download Dataset](Dataset/SalesData.csv)
+
 ---
 
 ## 🏗️ Pipeline Overview
 
 ### 1. **Ingestion Layer (Bronze)**
+
 - Raw CSV files ingested into raw tables.
 - Supports incremental load (avoids reloading duplicate entries).
 
 ### 2. **Transformation Layer (Silver)**
+
 - Cleans and standardizes data.
 - Converts raw tables into domain-specific structured tables.
 
 ### 3. **Analytics Layer (Gold)**
+
 - Creates **Fact** and **Dimension** tables from Silver layer.
 - Supports star-schema model.
 - Used for reporting and BI tools.
@@ -164,15 +180,18 @@ Copy the HTTPS URL shown (e.g., `https://abc123.ngrok.io`) for GitHub webhook se
 ## 📌 Airflow DAG
 
 Your main DAG file is located at:
+
 ```
 dags/etl_pipeline_dag.py
 ```
+
 The DAG coordinates:
+
 - GitHub extraction
 - Bronze → Silver → Gold transformation
 - Data loading
 
-Airflow UI: http://localhost:8080  
+Airflow UI: <http://localhost:8080>  
 Login: `airflow / airflow` (default)
 ![Alt text](Airflow_Workflow.png)
 ---
